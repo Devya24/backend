@@ -18,23 +18,24 @@ sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
 // Middleware
 app.use(bodyParser.json());
 
-// Helper function to generate a PDF from HTML
 const generatePDF = async (htmlContent) => {
-  const browser = await chromium.puppeteer.launch({
-    args: [...chromium.args, '--no-sandbox', '--disable-setuid-sandbox'],
-    executablePath: await chromium.executablePath,
-    headless: true,
-  });
+  try {
+    const browser = await puppeteer.launch({
+      args: [...chromium.args, '--no-sandbox', '--disable-setuid-sandbox'],
+      executablePath: await chromium.executablePath,
+      headless: true,
+    });
 
-  const page = await browser.newPage();
-  await page.setContent(htmlContent, { waitUntil: "networkidle0" });
-  const pdfBuffer = await page.pdf({
-    format: "A4",
-    printBackground: true,
-  });
-  await browser.close();
+    const page = await browser.newPage();
+    await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
+    const pdfBuffer = await page.pdf({ format: 'A4', printBackground: true });
+    await browser.close();
 
-  return Buffer.from(pdfBuffer).toString("base64");
+    return Buffer.from(pdfBuffer).toString('base64');
+  } catch (error) {
+    console.error('Error launching browser:', error);
+    throw error;
+  }
 };
 
 // Default route to confirm the API is running
