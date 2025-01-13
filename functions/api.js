@@ -4,8 +4,8 @@ const app = express();
 const router = express.Router();
 const sgMail = require("@sendgrid/mail");
 const bodyParser = require("body-parser");
-const puppeteer = require("puppeteer");
-const chromium = require("chrome-aws-lambda");
+const puppeteer = require('puppeteer-core');
+const chromium = require('chrome-aws-lambda');
 
 // Validate the presence of SendGrid API key
 if (!process.env.SEND_GRID_API_KEY) {
@@ -22,8 +22,8 @@ app.use(bodyParser.json());
 // Helper function to generate a PDF from HTML
 const generatePDF = async (htmlContent) => {
   const browser = await chromium.puppeteer.launch({
-    args: [...chromium.args, "--no-sandbox", "--disable-setuid-sandbox"],
-    executablePath: await chromium.executablePath, // Use chromium's path
+    args: [...chromium.args, '--no-sandbox', '--disable-setuid-sandbox'],
+    executablePath: await chromium.executablePath,
     headless: true,
   });
 
