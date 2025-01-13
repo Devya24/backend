@@ -5,8 +5,9 @@ const puppeteer = require('puppeteer');
 const fs = require('fs');
 
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 4000;
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
 
 
 
