@@ -3,4 +3,4 @@
 
 [functions]
   node_bundler = "esbuild"
-  external_node_modules = ["puppeteer-core", "chrome-aws-lambda"]
+ external_node_modules = ["typescript", "puppeteer-core", "chrome-aws-lambda"]
