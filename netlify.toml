@@ -1,9 +1,7 @@
 [build]
-  functions = "functions"
-  node_bundler = "esbuild"
+  command = "npm install && npm run build"
+  publish = "build"
 
-[functions."api"]
-  memory = 1024
-  timeout = 40  # Increased timeout to 40 seconds
+[functions]
   node_bundler = "esbuild"
-  external_node_modules = ["chrome-aws-lambda"]
+  external_node_modules = ["puppeteer-core", "chrome-aws-lambda"]
