@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "build": "netlify build",
+"build": "netlify deploy --prod",
   "start": "netlify dev"
 },
   "keywords": [],
