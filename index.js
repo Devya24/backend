@@ -5,9 +5,10 @@ const puppeteer = require('puppeteer');
 const fs = require('fs');
 
 const app = express();
-const port = 3000;
+const port = 3001;
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
+
 
 // Middleware
 app.use(bodyParser.json()); // Parse JSON request body
