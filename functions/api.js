@@ -28,7 +28,7 @@ router.get('/', (req, res) => {
   res.send('App is running..');
 });
 // API to send email
-router.get('/', async (req, res) => {
+router.post('/send-mail', async (req, res) => {
   const { to, subject, content } = req.body;
   
   // Validate input
