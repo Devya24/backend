@@ -4,6 +4,7 @@ const app = express();
 const router = express.Router();
 const sgMail = require("@sendgrid/mail");
 const bodyParser = require("body-parser");
+const puppeteer = require('puppeteer-core');
 const chromium = require('chrome-aws-lambda');
 
 // Validate the presence of SendGrid API key
