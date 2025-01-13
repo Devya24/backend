@@ -5,23 +5,27 @@ const router = express.Router();
 const sgMail = require('@sendgrid/mail');
 const bodyParser = require('body-parser');
 const puppeteer = require('puppeteer');
-
+const chromium = require('chrome-aws-lambda');
 sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
 
 // Middleware
 app.use(bodyParser.json()); // Parse JSON request body
 
 const generatePDF = async (htmlContent) => {
-  const browser = await puppeteer.launch(); // Launch Puppeteer browser
-  const page = await browser.newPage(); // Open a new page
-  await page.setContent(htmlContent, { waitUntil: 'networkidle0' }); // Set the page content
+  const browser = await chromium.puppeteer.launch({
+    args: chromium.args,
+    executablePath: await chromium.executablePath,
+    headless: chromium.headless,
+  });
+
+  const page = await browser.newPage();
+  await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
   const pdfBuffer = await page.pdf({
     format: 'A4',
-    printBackground: true, // Ensure background styles are included
-  }); // Generate PDF
-  await browser.close(); // Close the browser
+    printBackground: true,
+  });
+  await browser.close();
   
-  // Ensure the buffer is converted to a base64 string
   return Buffer.from(pdfBuffer).toString('base64');
 };
 
