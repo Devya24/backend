@@ -4,23 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-"build": "netlify deploy --prod",
-  "start": "netlify dev"
-},
+    "build": "netlify deploy --prod",
+    "start": "netlify dev"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@sendgrid/mail": "^8.1.4",
     "body-parser": "^1.20.3",
-     "chrome-aws-lambda": "^10.1.0",
-  "puppeteer-core": "^19.4.1",
+    "chrome-aws-lambda": "^10.1.0",
     "express": "^4.21.2",
     "netlify-cli": "^18.0.0",
     "netlify-lambda": "^2.0.16",
     "node-cron": "^3.0.3",
     "nodemailer": "^6.9.16",
-    "puppeteer": "^24.0.0",
+    "puppeteer-core": "^24.0.0",
     "serverless-http": "^3.2.0"
   },
   "devDependencies": {
