@@ -4,10 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
-    "build": "netlify deploy --prod"
-  },
+  "build": "netlify build",
+  "start": "netlify dev"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",

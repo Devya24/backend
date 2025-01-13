@@ -4,3 +4,5 @@
     [functions."api"]
 memory = 1024 # Increase memory to 1 GB
 timeout = 10   # Increase timeout to 10 seconds
+  node_bundler = "esbuild"
+  external_node_modules = ["chrome-aws-lambda"]

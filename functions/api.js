@@ -20,25 +20,21 @@ app.use(bodyParser.json());
 
 // Helper function to generate a PDF from HTML
 const generatePDF = async (htmlContent) => {
-  try {
-    const browser = await chromium.puppeteer.launch({
-      args: chromium.args,
-      executablePath: await chromium.executablePath,
-      headless: chromium.headless,
-    });
+  const browser = await chromium.puppeteer.launch({
+    args: [...chromium.args, '--no-sandbox', '--disable-setuid-sandbox'],
+    executablePath: await chromium.executablePath,
+    headless: true,
+  });
 
-    const page = await browser.newPage();
-    await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
-    const pdfBuffer = await page.pdf({
-      format: 'A4',
-      printBackground: true,
-    });
-    await browser.close();
-    return Buffer.from(pdfBuffer).toString('base64');
-  } catch (error) {
-    console.error('PDF Generation Error:', error);
-    throw new Error('Failed to generate PDF.');
-  }
+  const page = await browser.newPage();
+  await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
+  const pdfBuffer = await page.pdf({
+    format: 'A4',
+    printBackground: true,
+  });
+  await browser.close();
+
+  return Buffer.from(pdfBuffer).toString('base64');
 };
 
 // Default route to confirm the API is running
