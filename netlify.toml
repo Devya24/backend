@@ -1,8 +1,9 @@
 [build]
-    functions = "functions"
-    node_bundler = "esbuild"
-    [functions."api"]
-memory = 1024 # Increase memory to 1 GB
-timeout = 10   # Increase timeout to 10 seconds
+  functions = "functions"
+  node_bundler = "esbuild"
+
+[functions."api"]
+  memory = 1024
+  timeout = 40  # Increased timeout to 40 seconds
   node_bundler = "esbuild"
   external_node_modules = ["chrome-aws-lambda"]
