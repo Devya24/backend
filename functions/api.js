@@ -19,6 +19,7 @@ sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
 // Middleware
 app.use(bodyParser.json());
 
+
 const generatePDF = async (htmlContent) => {
   try {
     const browser = await puppeteer.launch({
